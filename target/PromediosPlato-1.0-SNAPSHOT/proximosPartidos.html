@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Próximos Partidos - Promiedos Clone</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        .probability-bar {
+            display: flex;
+            height: 20px;
+            background-color: #ddd;
+            margin-top: 5px;
+        }
+        .probability-segment {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .home-win { background-color: #4C9E4C; }
+        .draw { background-color: #808080; }
+        .away-win { background-color: #8B0000; }
+    </style>
+</head>
+<body>
+    <script src="assets/js/script.js"></script>
+    <header>
+        <div class="logo">PROMIEDOS PLATO<span class="logo-com">.com.ar</span></div>
+        <button class="menu-button" onclick="toggleMenu()">☰</button>
+    </header>
+    <div class="container">
+        <nav class="nav-desktop menu-index">
+            <a href="indixx.html" class="nav-button">Inicio</a>
+            <a href="subpaginaDeLiga.html" class="nav-button">Liga Plato</a>
+            <div class="nav-button">Mundial Plato</div>
+            <div class="nav-button">Amistosos</div>
+        </nav>
+        <nav class="nav-mobile" id="nav-mobile">
+            <a href="indixx.html" class="nav-button">Inicio</a>
+            <a href="subpaginaDeLiga.html" class="nav-button">Liga Plato</a>
+            <div class="nav-button">Mundial Plato</div>
+            <div class="nav-button">Amistosos</div>
+        </nav>
+        <main>
+            <div class="top-buttons">
+                <div>
+                    <a href="indixx.html" class="button">PARTIDOS JUGADOS</a>
+                    <a href="proximosPartidos.html" class="button active">PROXIMOS PARTIDOS</a>
+                </div>
+            </div>
+            <div class="match-panel">
+                <h2>PRÓXIMOS PARTIDOS - LIGA PLATO</h2>
+                <div class="match-card">
+                    <div style="display: flex; align-items: stretch; gap: 10px;">
+                        <div style="background-color: #333; padding: 5px 10px; width: 60px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+                            <div>20:00</div>
+                        </div>
+                        <div style="flex-grow: 1;">
+                            <div class="match-teams">
+                                <span>Equipo Local</span>
+                                <span class="match-score">vs</span>
+                                <span>Equipo Visitante</span>
+                            </div>
+                            <div class="probability-bar">
+                                <div class="probability-segment home-win" style="width: 40%;">40%</div>
+                                <div class="probability-segment draw" style="width: 30%;">30%</div>
+                                <div class="probability-segment away-win" style="width: 30%;">30%</div>
+                            </div>
+                        </div>
+                        <div style="padding: 5px; display: flex; align-items: center;">
+                            <button style="background: none; border: none; color: #B4D335; cursor: pointer; font-size: 20px;">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-card">
+                    <div style="display: flex; align-items: stretch; gap: 10px;">
+                        <div style="background-color: #333; padding: 5px 10px; width: 60px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+                            <div>21:30</div>
+                        </div>
+                        <div style="flex-grow: 1;">
+                            <div class="match-teams">
+                                <span>Otro Local</span>
+                                <span class="match-score">vs</span>
+                                <span>Otro Visitante</span>
+                            </div>
+                            <div class="probability-bar">
+                                <div class="probability-segment home-win" style="width: 35%;">35%</div>
+                                <div class="probability-segment draw" style="width: 40%;">40%</div>
+                                <div class="probability-segment away-win" style="width: 25%;">25%</div>
+                            </div>
+                        </div>
+                        <div style="padding: 5px; display: flex; align-items: center;">
+                            <button style="background: none; border: none; color: #B4D335; cursor: pointer; font-size: 20px;">+</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Puedes agregar más partidos siguiendo la misma estructura -->
+            </div>
+        </main>
+    </div>
+    <footer>
+    <!-- Contenido del footer -->
+    </footer>
+</body>
+</html>
