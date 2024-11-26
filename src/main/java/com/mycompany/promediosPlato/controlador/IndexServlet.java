@@ -18,7 +18,7 @@ public class IndexServlet extends HttpServlet {
 
     private UsuarioDAOHardcodeado usuarioDAO;
     private PartidoDAOHardcodeado partidoDAO;
-    private GolesPorTiempoHardcodeado golesPorTiempoDAO;
+    private GolesPorTiempoDAOHardcodeado golesPorTiempoDAO;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -26,7 +26,7 @@ public class IndexServlet extends HttpServlet {
         System.out.println("Inicializando IndexServlet");
         usuarioDAO = new UsuarioDAOHardcodeado();
         partidoDAO = new PartidoDAOHardcodeado();
-        golesPorTiempoDAO = new GolesPorTiempoHardcodeado();
+        golesPorTiempoDAO = new GolesPorTiempoDAOHardcodeado();
     }
 
     @Override

@@ -2,10 +2,10 @@ package com.mycompany.promediosPlato.modelo;
 
 import java.util.ArrayList;
 
-public class GolesPorTiempoHardcodeado {
+public class GolesPorTiempoDAOHardcodeado {
     private ArrayList<GolesPorTiempo> golesPorPartido;
 
-    public GolesPorTiempoHardcodeado(){
+    public GolesPorTiempoDAOHardcodeado(){
         golesPorPartido = new ArrayList<>();
         cargarGolesPorPartido();
     }
@@ -15,6 +15,9 @@ public class GolesPorTiempoHardcodeado {
         golesPorPartido.add(new GolesPorTiempo(2, 1, "segundo_tiempo", 1, 1));
         golesPorPartido.add(new GolesPorTiempo(3, 2, "primer_tiempo", 1, 0));
         golesPorPartido.add(new GolesPorTiempo(4, 2, "segundo_tiempo", 0, 1));
+        golesPorPartido.add(new GolesPorTiempo(5, 3, "primer_tiempo", 0, 3));
+        golesPorPartido.add(new GolesPorTiempo(6, 3, "segundo_tiempo", 1, 3));
+        golesPorPartido.add(new GolesPorTiempo(7, 3, "tercer_tiempo", 0, 1));
 
     }
 

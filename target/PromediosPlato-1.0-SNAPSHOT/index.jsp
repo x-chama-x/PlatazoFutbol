@@ -35,8 +35,22 @@
                 </div>
             </div>
             <div class="match-panel">
-                <h2>LIGA PLATO</h2>
+                <c:set var="currentEvent" value="" />
                 <c:forEach var="partido" items="${partidos}">
+                    <c:if test="${currentEvent != partido.tipoEvento}">
+                        <c:set var="currentEvent" value="${partido.tipoEvento}" />
+                        <c:choose>
+                            <c:when test="${partido.tipoEvento == 'liga'}">
+                                <h2>LIGA PLATO</h2>
+                            </c:when>
+                            <c:when test="${partido.tipoEvento == 'mundial'}">
+                                <h2>MUNDIAL</h2>
+                            </c:when>
+                            <c:otherwise>
+                                <h2>OTRO EVENTO</h2>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:if>
                     <div class="match-card">
                         <div style="display: flex; align-items: stretch; gap: 10px;">
                             <div style="background-color: #333; padding: 5px 10px; width: 60px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
