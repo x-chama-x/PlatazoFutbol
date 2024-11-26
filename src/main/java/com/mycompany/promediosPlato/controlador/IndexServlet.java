@@ -2,6 +2,9 @@ package com.mycompany.promediosPlato.controlador;
 
 import com.mycompany.promediosPlato.modelo.*;
 
+import com.mycompany.promediosPlato.modelo.db.GolesPorTiempoDAO;
+import com.mycompany.promediosPlato.modelo.db.PartidoDAO;
+import com.mycompany.promediosPlato.modelo.db.UsuarioDAO;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -16,17 +19,17 @@ import java.util.Map;
 
 public class IndexServlet extends HttpServlet {
 
-    private UsuarioDAOHardcodeado usuarioDAO;
-    private PartidoDAOHardcodeado partidoDAO;
-    private GolesPorTiempoDAOHardcodeado golesPorTiempoDAO;
+    private UsuarioDAO usuarioDAO;
+    private PartidoDAO partidoDAO;
+    private GolesPorTiempoDAO golesPorTiempoDAO;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         System.out.println("Inicializando IndexServlet");
-        usuarioDAO = new UsuarioDAOHardcodeado();
-        partidoDAO = new PartidoDAOHardcodeado();
-        golesPorTiempoDAO = new GolesPorTiempoDAOHardcodeado();
+        usuarioDAO = new UsuarioDAO();
+        partidoDAO = new PartidoDAO();
+        golesPorTiempoDAO = new GolesPorTiempoDAO();
     }
 
     @Override
