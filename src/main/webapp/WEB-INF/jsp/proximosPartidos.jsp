@@ -35,13 +35,13 @@
     </header>
     <div class="container">
         <nav class="nav-desktop menu-index">
-            <a href="index.jsp" class="nav-button">Inicio</a>
+            <a href="${pageContext.request.contextPath}/" class="nav-button">Inicio</a>
             <a href="subpaginaDeLiga.html" class="nav-button">Liga Plato</a>
             <div class="nav-button">Mundial Plato</div>
             <div class="nav-button">Amistosos</div>
         </nav>
         <nav class="nav-mobile" id="nav-mobile">
-            <a href="index.jsp" class="nav-button">Inicio</a>
+            <a href="${pageContext.request.contextPath}/" class="nav-button">Inicio</a>
             <a href="subpaginaDeLiga.html" class="nav-button">Liga Plato</a>
             <div class="nav-button">Mundial Plato</div>
             <div class="nav-button">Amistosos</div>
@@ -54,8 +54,23 @@
                 </div>
             </div>
             <div class="match-panel">
+                <c:set var="currentEvent" value="" />
                 <h2>PRÓXIMOS PARTIDOS</h2>
                 <c:forEach var="partido" items="${proximosPartidos}">
+                    <c:if test="${currentEvent != partido.tipoEvento}">
+                        <c:set var="currentEvent" value="${partido.tipoEvento}" />
+                        <c:choose>
+                            <c:when test="${partido.tipoEvento == 'liga'}">
+                                <h2>LIGA PLATO</h2>
+                            </c:when>
+                            <c:when test="${partido.tipoEvento == 'mundial'}">
+                                <h2>MUNDIAL</h2>
+                            </c:when>
+                            <c:otherwise>
+                                <h2>OTRO EVENTO</h2>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:if>
                     <div class="match-card">
                         <div style="display: flex; align-items: stretch; gap: 10px;">
                             <div style="background-color: #333; padding: 5px 10px; width: 60px; text-align: center; display: flex; flex-direction: column; justify-content: center;">

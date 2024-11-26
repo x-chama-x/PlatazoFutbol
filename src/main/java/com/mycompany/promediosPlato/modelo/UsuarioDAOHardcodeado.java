@@ -11,10 +11,10 @@ public class UsuarioDAOHardcodeado {
     }
 
     private void cargarUsuarios() {
-        usuarios.add(new Usuario(1, "x_chama_x", 10, 7, 3));
-        usuarios.add(new Usuario(2, "facubostero", 10, 6, 2));
-        usuarios.add(new Usuario(3, "HOm3ro_s1ns0", 10, 5, 1));
-        usuarios.add(new Usuario(4, "elmasmejor", 10, 4, 0));
+        usuarios.add(new Usuario(1, "x_chama_x", 1554, 827, 49));
+        usuarios.add(new Usuario(2, "facubostero", 476, 253, 25));
+        usuarios.add(new Usuario(3, "HOm3ro_s1ns0", 100, 70, 35));
+        usuarios.add(new Usuario(4, "elmasmejor", 70, 40, 12));
     }
 
     public ArrayList<Usuario> getUsuarios() {

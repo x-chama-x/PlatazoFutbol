@@ -28,7 +28,6 @@ public class ProximosPartidosServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // Obtener los datos de los usuarios y partidos
         ArrayList<Usuario> usuarios = usuarioDAO.getUsuarios();
         ArrayList<Partido> partidos = partidoDAO.getPartidos();
@@ -47,13 +46,13 @@ public class ProximosPartidosServlet extends HttpServlet {
             }
         }
 
-        // Calcular la probabilidad de victoria (hardcodeado por ahora)
+        // Calcular la probabilidad de victoria
         Map<Integer, Map<String, Integer>> probabilidades = new HashMap<>();
         for (Partido partido : proximosPartidos) {
-            Map<String, Integer> probabilidad = new HashMap<>();
-            probabilidad.put("local", 40); // 40% de victoria local
-            probabilidad.put("empate", 30); // 30% de empate
-            probabilidad.put("visitante", 30); // 30% de victoria visitante
+            Usuario local = getUsuarioById(usuarios, partido.getEquipoLocalId());
+            Usuario visitante = getUsuarioById(usuarios, partido.getEquipoVisitanteId());
+
+            Map<String, Integer> probabilidad = getStringIntegerMap(local, visitante);
             probabilidades.put(partido.getPartidoId(), probabilidad);
         }
 
@@ -64,5 +63,47 @@ public class ProximosPartidosServlet extends HttpServlet {
 
         // Redirigir a la página proximosPartidos.jsp
         request.getRequestDispatcher("/WEB-INF/jsp/proximosPartidos.jsp").forward(request, response);
+    }
+
+    private static Map<String, Integer> getStringIntegerMap(Usuario local, Usuario visitante) {
+        double probLocal = (local.getNivel() * (double) local.getVictorias() / local.getPartidosJugados()) /
+                ((local.getNivel() * (double) local.getVictorias() / local.getPartidosJugados()) +
+                        (visitante.getNivel() * (double) visitante.getVictorias() / visitante.getPartidosJugados()));
+
+        double probVisitante = (visitante.getNivel() * (double) visitante.getVictorias() / visitante.getPartidosJugados()) /
+                ((local.getNivel() * (double) local.getVictorias() / local.getPartidosJugados()) +
+                        (visitante.getNivel() * (double) visitante.getVictorias() / visitante.getPartidosJugados()));
+
+        double probEmpate = 2 * probLocal * probVisitante / (probLocal + probVisitante);
+
+        // Limitar la probabilidad de empate a un máximo de 40%
+        if (probEmpate > 0.4) {
+            probEmpate = 0.4;
+        }
+
+        // Redistribuir el resto de la probabilidad entre los jugadores
+        double totalProb = probLocal + probVisitante;
+        probLocal = probLocal / totalProb * (1 - probEmpate);
+        probVisitante = probVisitante / totalProb * (1 - probEmpate);
+
+        // Normalizar las probabilidades para asegurar que sumen 100%
+        int probLocalInt = (int) (probLocal * 100);
+        int probEmpateInt = (int) (probEmpate * 100);
+        int probVisitanteInt = 100 - probLocalInt - probEmpateInt;
+
+        Map<String, Integer> probabilidad = new HashMap<>();
+        probabilidad.put("local", probLocalInt);
+        probabilidad.put("empate", probEmpateInt);
+        probabilidad.put("visitante", probVisitanteInt);
+        return probabilidad;
+    }
+
+    private Usuario getUsuarioById(ArrayList<Usuario> usuarios, int usuarioId) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getUsuarioId() == usuarioId) {
+                return usuario;
+            }
+        }
+        return null;
     }
 }
