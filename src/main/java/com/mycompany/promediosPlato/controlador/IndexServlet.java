@@ -59,8 +59,16 @@ public class IndexServlet extends HttpServlet {
             }
         }
 
+        // Filtrar los partidos jugados
+        List<Partido> partidosJugados = new ArrayList<>();
+        for (Partido partido : partidos) {
+            if ("finalizado".equals(partido.getEstado())) {
+                partidosJugados.add(partido);
+            }
+        }
+
         // Pasar los datos a la página JSP
-        request.setAttribute("partidos", partidos);
+        request.setAttribute("partidos", partidosJugados);
         request.setAttribute("equipoNombres", equipoNombres);
         request.setAttribute("golesPorPartido", golesPorPartido);
 

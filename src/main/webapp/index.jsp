@@ -30,8 +30,8 @@
         <main>
             <div class="top-buttons">
                 <div>
-                    <a href="index.jsp" class="button">PARTIDOS JUGADOS</a>
-                    <a href="proximosPartidos.html" class="button">PROXIMOS PARTIDOS</a>
+                    <a href="${pageContext.request.contextPath}/" class="button">PARTIDOS JUGADOS</a>
+                    <a href="prox" class="button">PROXIMOS PARTIDOS</a>
                 </div>
             </div>
             <div class="match-panel">

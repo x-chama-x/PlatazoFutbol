@@ -1,8 +1,9 @@
 C:\Users\Francisco\Desktop\PromediosPlato\src\main\java\com\mycompany\promediosPlato\controlador\IndexServlet.java
 C:\Users\Francisco\Desktop\PromediosPlato\src\main\java\com\mycompany\promediosPlato\modelo\UsuarioDAOHardcodeado.java
-C:\Users\Francisco\Desktop\PromediosPlato\src\main\java\com\mycompany\promediosPlato\modelo\GolesPorTiempoHardcodeado.java
 C:\Users\Francisco\Desktop\PromediosPlato\src\main\java\com\mycompany\promediosPlato\modelo\Partido.java
 C:\Users\Francisco\Desktop\PromediosPlato\src\main\java\com\mycompany\promediosPlato\modelo\Clasificacion.java
+C:\Users\Francisco\Desktop\PromediosPlato\src\main\java\com\mycompany\promediosPlato\controlador\ProximosPartidosServlet.java
 C:\Users\Francisco\Desktop\PromediosPlato\src\main\java\com\mycompany\promediosPlato\modelo\PartidoDAOHardcodeado.java
+C:\Users\Francisco\Desktop\PromediosPlato\src\main\java\com\mycompany\promediosPlato\modelo\GolesPorTiempoDAOHardcodeado.java
 C:\Users\Francisco\Desktop\PromediosPlato\src\main\java\com\mycompany\promediosPlato\modelo\Usuario.java
 C:\Users\Francisco\Desktop\PromediosPlato\src\main\java\com\mycompany\promediosPlato\modelo\GolesPorTiempo.java
