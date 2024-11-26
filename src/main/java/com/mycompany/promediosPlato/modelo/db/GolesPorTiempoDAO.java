@@ -29,13 +29,6 @@ public class GolesPorTiempoDAO {
                 int golesLocal = rs.getInt("golesLocal");
                 int golesVisitante = rs.getInt("golesVisitantes");
 
-                // Agregar registros de depuración
-                System.out.println("id: " + id);
-                System.out.println("partidoId: " + partidoId);
-                System.out.println("tiempo: " + tiempo);
-                System.out.println("golesLocal: " + golesLocal);
-                System.out.println("golesVisitante: " + golesVisitante);
-
                 GolesPorTiempo gol = new GolesPorTiempo(id, partidoId, tiempo, golesLocal, golesVisitante);
                 golesPorTiempo.add(gol);
             }

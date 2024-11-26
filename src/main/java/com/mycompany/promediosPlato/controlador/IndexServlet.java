@@ -52,16 +52,6 @@ public class IndexServlet extends HttpServlet {
             golesPorPartido.computeIfAbsent(gol.getPartidoId(), k -> new ArrayList<>()).add(gol);
         }
 
-        // Imprimir los datos de los partidos, goles por tiempo y nombres de los equipos
-        for (Partido partido : partidos) {
-            System.out.println("Partido: " + partido.getPartidoId() + " - " + partido.getFecha() + " - " + equipoNombres.get(partido.getEquipoLocalId()) + " vs " + equipoNombres.get(partido.getEquipoVisitanteId()));
-            if (golesPorPartido.containsKey(partido.getPartidoId())) {
-                for (GolesPorTiempo gol : golesPorPartido.get(partido.getPartidoId())) {
-                    System.out.println("Goles por tiempo: " + gol.getTiempo() + " - " + gol.getGolesLocal() + " - " + gol.getGolesVisitante());
-                }
-            }
-        }
-
         // Filtrar los partidos jugados
         List<Partido> partidosJugados = new ArrayList<>();
         for (Partido partido : partidos) {

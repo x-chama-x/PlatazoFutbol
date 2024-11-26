@@ -34,17 +34,6 @@ public class PartidoDAO {
                 Integer jornada = rs.getObject("jornada", Integer.class);
                 String estado = rs.getString("estado");
 
-                // Agregar registros de depuración
-                System.out.println("partidoId: " + partidoId);
-                System.out.println("fecha: " + fecha);
-                System.out.println("equipoLocaId: " + equipoLocalId);
-                System.out.println("equipoVisitanteId: " + equipoVisitanteId);
-                System.out.println("resultado: " + resultado);
-                System.out.println("tipoEvento: " + tipoEvento);
-                System.out.println("faseCopa: " + faseCopa);
-                System.out.println("jornada: " + jornada);
-                System.out.println("estado: " + estado);
-
                 Partido partido = new Partido(partidoId, fecha, equipoLocalId, equipoVisitanteId, resultado, tipoEvento, faseCopa, jornada, estado);
                 partidos.add(partido);
             }

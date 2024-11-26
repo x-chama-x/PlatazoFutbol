@@ -2,6 +2,8 @@ package com.mycompany.promediosPlato.controlador;
 
 import com.mycompany.promediosPlato.modelo.*;
 
+import com.mycompany.promediosPlato.modelo.db.PartidoDAO;
+import com.mycompany.promediosPlato.modelo.db.UsuarioDAO;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -16,14 +18,14 @@ import java.util.Map;
 
 public class ProximosPartidosServlet extends HttpServlet {
 
-    private UsuarioDAOHardcodeado usuarioDAO;
-    private PartidoDAOHardcodeado partidoDAO;
+    private UsuarioDAO usuarioDAO;
+    private PartidoDAO partidoDAO;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        usuarioDAO = new UsuarioDAOHardcodeado();
-        partidoDAO = new PartidoDAOHardcodeado();
+        usuarioDAO = new UsuarioDAO();
+        partidoDAO = new PartidoDAO();
     }
 
     @Override
