@@ -2,37 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Próximos Partidos - Promiedos Clone</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles.css">
-    <style>
-        .probability-bar {
-            display: flex;
-            height: 20px;
-            background-color: #ddd;
-            margin-top: 5px;
-        }
-        .probability-segment {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        .home-win { background-color: #4C9E4C; }
-        .draw { background-color: #808080; }
-        .away-win { background-color: #8B0000; }
-    </style>
-</head>
+<c:import url="/WEB-INF/jsp/includes/head.jsp" />
 <body>
-    <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
-    <header>
-        <div class="logo">PROMIEDOS PLATO<span class="logo-com">.com.ar</span></div>
-        <button class="menu-button" onclick="toggleMenu()">☰</button>
-    </header>
+<c:import url="/WEB-INF/jsp/includes/header.jsp" />
     <div class="container">
         <nav class="nav-desktop menu-index">
             <a href="${pageContext.request.contextPath}/" class="nav-button">Inicio</a>

@@ -528,6 +528,24 @@ footer {
                 margin-top: 100px; /* Ajusta el valor según sea necesario */
             }
 
+            .probability-bar {
+                display: flex;
+                height: 20px;
+                background-color: #ddd;
+                margin-top: 5px;
+            }
+            .probability-segment {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 12px;
+                font-weight: bold;
+            }
+            .home-win { background-color: #4C9E4C; }
+            .draw { background-color: #808080; }
+            .away-win { background-color: #8B0000; }
+
             
 
             

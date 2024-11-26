@@ -2,18 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promiedos Clone</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles.css">
-</head>
+<c:import url="/WEB-INF/jsp/includes/head.jsp" />
 <body>
-    <script src="${pageContext.request.contextPath}/assets/js/script.js"></script>
-    <header>
-        <div class="logo">PROMIEDOS PLATO<span class="logo-com">.com.ar</span></div>
-        <button class="menu-button" onclick="toggleMenu()">☰</button>
-    </header>
+<c:import url="/WEB-INF/jsp/includes/header.jsp" />
     <div class="container">
         <nav class="nav-desktop menu-index">
             <a href="${pageContext.request.contextPath}/" class="nav-button active">Inicio</a>
