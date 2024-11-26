@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class IndexServlet extends HttpServlet {
@@ -43,12 +44,9 @@ public class IndexServlet extends HttpServlet {
         }
 
         // Crear un mapa que relacione partidoId con los goles por tiempo
-        Map<Integer, ArrayList<GolesPorTiempo>> golesPorPartido = new HashMap<>();
+        Map<Integer, List<GolesPorTiempo>> golesPorPartido = new HashMap<>();
         for (GolesPorTiempo gol : golesPorTiempo) {
-            if (!golesPorPartido.containsKey(gol.getPartidoId())) {
-                golesPorPartido.put(gol.getPartidoId(), new ArrayList<>());
-            }
-            golesPorPartido.get(gol.getPartidoId()).add(gol);
+            golesPorPartido.computeIfAbsent(gol.getPartidoId(), k -> new ArrayList<>()).add(gol);
         }
 
         // Imprimir los datos de los partidos, goles por tiempo y nombres de los equipos

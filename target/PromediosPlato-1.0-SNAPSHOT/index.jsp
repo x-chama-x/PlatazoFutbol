@@ -50,14 +50,18 @@
                                 </div>
                                 <div class="match-details">
                                     <div class="match-scorers">
-                                        <c:forEach var="gol" items="${partido.golesLocal}">
-                                            <div>${gol}</div>
+                                        <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
+                                            <c:if test="${gol.golesLocal > 0}">
+                                                <div>${gol.golesLocalFormatted}</div>
+                                            </c:if>
                                         </c:forEach>
                                     </div>
                                     <div class="match-status"></div>
                                     <div class="match-scorers" style="text-align: right;">
-                                        <c:forEach var="gol" items="${partido.golesVisitante}">
-                                            <div>${gol}</div>
+                                        <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
+                                            <c:if test="${gol.golesVisitante > 0}">
+                                                <div>${gol.golesVisitanteFormatted}</div>
+                                            </c:if>
                                         </c:forEach>
                                     </div>
                                 </div>
