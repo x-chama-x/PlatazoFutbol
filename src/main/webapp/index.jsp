@@ -25,8 +25,8 @@
                     <a href="prox" class="button">PROXIMOS PARTIDOS</a>
                 </div>
             </div>
-            <div class="match-panel">
-                <c:forEach var="entry" items="${partidosJugadosPorEvento}">
+            <c:forEach var="entry" items="${partidosJugadosPorEvento}" varStatus="status">
+                <div class="match-panel">
                     <c:choose>
                         <c:when test="${entry.key == 'liga'}">
                             <h2>LIGA PLATO</h2>
@@ -87,9 +87,11 @@
                             </div>
                         </div>
                     </c:forEach>
-                    <br/> <!-- Agrega un salto de línea entre los diferentes tipos de eventos -->
-                </c:forEach>
-            </div>
+                </div>
+                <c:if test="${!status.last}">
+                    <br>
+                </c:if>
+            </c:forEach>
         </main>
     </div>
     <footer>

@@ -25,8 +25,8 @@
                     <a href="prox" class="button active">PRÓXIMOS PARTIDOS</a>
                 </div>
             </div>
-            <div class="match-panel">
-                <c:forEach var="entry" items="${proximosPartidosPorEvento}">
+            <c:forEach var="entry" items="${proximosPartidosPorEvento}" varStatus="status">
+                <div class="match-panel">
                     <c:choose>
                         <c:when test="${entry.key == 'liga'}">
                             <h2>LIGA PLATO</h2>
@@ -63,8 +63,11 @@
                             </div>
                         </div>
                     </c:forEach>
-                </c:forEach>
-            </div>
+                </div>
+                <c:if test="${!status.last}">
+                    <br>
+                </c:if>
+            </c:forEach>
         </main>
     </div>
     <footer>
