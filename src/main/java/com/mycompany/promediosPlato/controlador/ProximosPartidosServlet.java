@@ -40,26 +40,30 @@ public class ProximosPartidosServlet extends HttpServlet {
             equipoNombres.put(usuario.getUsuarioId(), usuario.getNombre());
         }
 
-        // Filtrar los partidos no jugados
-        List<Partido> proximosPartidos = new ArrayList<>();
+        // Filtrar y agrupar los partidos no jugados por tipo de evento
+        Map<String, List<Partido>> proximosPartidosPorEvento = new HashMap<>();
         for (Partido partido : partidos) {
             if (!"finalizado".equals(partido.getEstado())) {
-                proximosPartidos.add(partido);
+                proximosPartidosPorEvento
+                        .computeIfAbsent(partido.getTipoEvento(), k -> new ArrayList<>())
+                        .add(partido);
             }
         }
 
         // Calcular la probabilidad de victoria
         Map<Integer, Map<String, Integer>> probabilidades = new HashMap<>();
-        for (Partido partido : proximosPartidos) {
-            Usuario local = getUsuarioById(usuarios, partido.getEquipoLocalId());
-            Usuario visitante = getUsuarioById(usuarios, partido.getEquipoVisitanteId());
+        for (List<Partido> proximosPartidos : proximosPartidosPorEvento.values()) {
+            for (Partido partido : proximosPartidos) {
+                Usuario local = getUsuarioById(usuarios, partido.getEquipoLocalId());
+                Usuario visitante = getUsuarioById(usuarios, partido.getEquipoVisitanteId());
 
-            Map<String, Integer> probabilidad = getStringIntegerMap(local, visitante);
-            probabilidades.put(partido.getPartidoId(), probabilidad);
+                Map<String, Integer> probabilidad = getStringIntegerMap(local, visitante);
+                probabilidades.put(partido.getPartidoId(), probabilidad);
+            }
         }
 
         // Pasar los datos a la página JSP
-        request.setAttribute("proximosPartidos", proximosPartidos);
+        request.setAttribute("proximosPartidosPorEvento", proximosPartidosPorEvento);
         request.setAttribute("equipoNombres", equipoNombres);
         request.setAttribute("probabilidades", probabilidades);
 

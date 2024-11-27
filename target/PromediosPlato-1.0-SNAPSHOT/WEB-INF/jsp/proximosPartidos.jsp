@@ -26,46 +26,43 @@
                 </div>
             </div>
             <div class="match-panel">
-                <c:set var="currentEvent" value="" />
-                <h2>PRÓXIMOS PARTIDOS</h2>
-                <c:forEach var="partido" items="${proximosPartidos}">
-                    <c:if test="${currentEvent != partido.tipoEvento}">
-                        <c:set var="currentEvent" value="${partido.tipoEvento}" />
-                        <c:choose>
-                            <c:when test="${partido.tipoEvento == 'liga'}">
-                                <h2>LIGA PLATO</h2>
-                            </c:when>
-                            <c:when test="${partido.tipoEvento == 'mundial'}">
-                                <h2>MUNDIAL</h2>
-                            </c:when>
-                            <c:otherwise>
-                                <h2>OTRO EVENTO</h2>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:if>
-                    <div class="match-card">
-                        <div style="display: flex; align-items: stretch; gap: 10px;">
-                            <div style="background-color: #333; padding: 5px 10px; width: 60px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
-                                <div>${partido.fecha}</div>
-                            </div>
-                            <div style="flex-grow: 1;">
-                                <div class="match-teams">
-                                    <span>${equipoNombres[partido.equipoLocalId]}</span>
-                                    <span class="match-score">vs</span>
-                                    <span>${equipoNombres[partido.equipoVisitanteId]}</span>
+                <c:forEach var="entry" items="${proximosPartidosPorEvento}">
+                    <c:choose>
+                        <c:when test="${entry.key == 'liga'}">
+                            <h2>LIGA PLATO</h2>
+                        </c:when>
+                        <c:when test="${entry.key == 'mundial'}">
+                            <h2>MUNDIAL</h2>
+                        </c:when>
+                        <c:otherwise>
+                            <h2>OTRO EVENTO</h2>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:forEach var="partido" items="${entry.value}">
+                        <div class="match-card">
+                            <div style="display: flex; align-items: stretch; gap: 10px;">
+                                <div style="background-color: #333; padding: 5px 10px; width: 60px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+                                    <div>${partido.fecha}</div>
                                 </div>
-                                <div class="probability-bar">
-                                    <c:set var="probabilidad" value="${probabilidades[partido.partidoId]}" />
-                                    <div class="probability-segment home-win" style="width: ${probabilidad.local}%;">${probabilidad.local}%</div>
-                                    <div class="probability-segment draw" style="width: ${probabilidad.empate}%;">${probabilidad.empate}%</div>
-                                    <div class="probability-segment away-win" style="width: ${probabilidad.visitante}%;">${probabilidad.visitante}%</div>
+                                <div style="flex-grow: 1;">
+                                    <div class="match-teams">
+                                        <span>${equipoNombres[partido.equipoLocalId]}</span>
+                                        <span class="match-score">vs</span>
+                                        <span>${equipoNombres[partido.equipoVisitanteId]}</span>
+                                    </div>
+                                    <div class="probability-bar">
+                                        <c:set var="probabilidad" value="${probabilidades[partido.partidoId]}" />
+                                        <div class="probability-segment home-win" style="width: ${probabilidad.local}%;">${probabilidad.local}%</div>
+                                        <div class="probability-segment draw" style="width: ${probabilidad.empate}%;">${probabilidad.empate}%</div>
+                                        <div class="probability-segment away-win" style="width: ${probabilidad.visitante}%;">${probabilidad.visitante}%</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div style="padding: 5px; display: flex; align-items: center;">
-                                <button style="background: none; border: none; color: #B4D335; cursor: pointer; font-size: 20px;">+</button>
+                                <div style="padding: 5px; display: flex; align-items: center;">
+                                    <button style="background: none; border: none; color: #000000; cursor: pointer; font-size: 20px;">+</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </c:forEach>
                 </c:forEach>
             </div>
         </main>

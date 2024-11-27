@@ -34,7 +34,6 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // Obtener los datos de los usuarios, partidos y goles por tiempo
         ArrayList<Usuario> usuarios = usuarioDAO.getUsuarios();
         ArrayList<Partido> partidos = partidoDAO.getPartidos();
@@ -52,16 +51,18 @@ public class IndexServlet extends HttpServlet {
             golesPorPartido.computeIfAbsent(gol.getPartidoId(), k -> new ArrayList<>()).add(gol);
         }
 
-        // Filtrar los partidos jugados
-        List<Partido> partidosJugados = new ArrayList<>();
+        // Filtrar y agrupar los partidos jugados por tipo de evento
+        Map<String, List<Partido>> partidosJugadosPorEvento = new HashMap<>();
         for (Partido partido : partidos) {
             if ("finalizado".equals(partido.getEstado())) {
-                partidosJugados.add(partido);
+                partidosJugadosPorEvento
+                        .computeIfAbsent(partido.getTipoEvento(), k -> new ArrayList<>())
+                        .add(partido);
             }
         }
 
         // Pasar los datos a la página JSP
-        request.setAttribute("partidos", partidosJugados);
+        request.setAttribute("partidosJugadosPorEvento", partidosJugadosPorEvento);
         request.setAttribute("equipoNombres", equipoNombres);
         request.setAttribute("golesPorPartido", golesPorPartido);
 

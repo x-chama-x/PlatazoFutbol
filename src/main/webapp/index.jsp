@@ -26,56 +26,68 @@
                 </div>
             </div>
             <div class="match-panel">
-                <c:set var="currentEvent" value="" />
-                <c:forEach var="partido" items="${partidos}">
-                    <c:if test="${currentEvent != partido.tipoEvento}">
-                        <c:set var="currentEvent" value="${partido.tipoEvento}" />
-                        <c:choose>
-                            <c:when test="${partido.tipoEvento == 'liga'}">
-                                <h2>LIGA PLATO</h2>
-                            </c:when>
-                            <c:when test="${partido.tipoEvento == 'mundial'}">
-                                <h2>MUNDIAL</h2>
-                            </c:when>
-                            <c:otherwise>
-                                <h2>OTRO EVENTO</h2>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:if>
-                    <div class="match-card">
-                        <div style="display: flex; align-items: stretch; gap: 10px;">
-                            <div style="background-color: #333; padding: 5px 10px; width: 60px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
-                                <div>${partido.estado}</div>
-                            </div>
-                            <div style="flex-grow: 1;">
-                                <div class="match-teams">
-                                    <span>${equipoNombres[partido.equipoLocalId]}</span>
-                                    <span class="match-score">${partido.resultado}</span>
-                                    <span>${equipoNombres[partido.equipoVisitanteId]}</span>
+                <c:forEach var="entry" items="${partidosJugadosPorEvento}">
+                    <c:choose>
+                        <c:when test="${entry.key == 'liga'}">
+                            <h2>LIGA PLATO</h2>
+                        </c:when>
+                        <c:when test="${entry.key == 'mundial'}">
+                            <h2>MUNDIAL</h2>
+                        </c:when>
+                        <c:otherwise>
+                            <h2>OTRO EVENTO</h2>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:forEach var="partido" items="${entry.value}">
+                        <div class="match-card">
+                            <div style="display: flex; align-items: stretch; gap: 10px;">
+                                <div style="background-color: #333; padding: 5px 10px; width: 60px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+                                    <c:choose>
+                                        <c:when test="${partido.estado == 'finalizado'}">
+                                            <div>Final</div>
+                                        </c:when>
+                                        <c:when test="${partido.estado == 'suspendido'}">
+                                            <div>Suspendido</div>
+                                        </c:when>
+                                        <c:when test="${partido.estado == 'en_progreso'}">
+                                            <div>En progreso</div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div>${partido.estado}</div>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
-                                <div class="match-details">
-                                    <div class="match-scorers">
-                                        <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
-                                            <c:if test="${gol.golesLocal > 0}">
-                                                <div>${gol.golesLocalFormatted}</div>
-                                            </c:if>
-                                        </c:forEach>
+                                <div style="flex-grow: 1;">
+                                    <div class="match-teams">
+                                        <span>${equipoNombres[partido.equipoLocalId]}</span>
+                                        <span class="match-score">${partido.resultado}</span>
+                                        <span>${equipoNombres[partido.equipoVisitanteId]}</span>
                                     </div>
-                                    <div class="match-status"></div>
-                                    <div class="match-scorers" style="text-align: right;">
-                                        <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
-                                            <c:if test="${gol.golesVisitante > 0}">
-                                                <div>${gol.golesVisitanteFormatted}</div>
-                                            </c:if>
-                                        </c:forEach>
+                                    <div class="match-details">
+                                        <div class="match-scorers">
+                                            <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
+                                                <c:if test="${gol.golesLocal > 0}">
+                                                    <div>${gol.golesLocalFormatted}</div>
+                                                </c:if>
+                                            </c:forEach>
+                                        </div>
+                                        <div class="match-status"></div>
+                                        <div class="match-scorers" style="text-align: right;">
+                                            <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
+                                                <c:if test="${gol.golesVisitante > 0}">
+                                                    <div>${gol.golesVisitanteFormatted}</div>
+                                                </c:if>
+                                            </c:forEach>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div style="padding: 5px; display: flex; align-items: center;">
-                                <button style="background: none; border: none; color: #B4D335; cursor: pointer; font-size: 20px;">+</button>
+                                <div style="padding: 5px; display: flex; align-items: center;">
+                                    <button style="background: none; border: none; color: #000000; cursor: pointer; font-size: 20px;">+</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </c:forEach>
+                    <br/> <!-- Agrega un salto de línea entre los diferentes tipos de eventos -->
                 </c:forEach>
             </div>
         </main>
