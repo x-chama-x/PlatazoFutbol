@@ -8,6 +8,12 @@
     <div class="container">
         <c:import url="/WEB-INF/jsp/includes/nav.jsp" />
         <main>
+        <div class="navigation-blocks">
+            <a href="liga" class="nav-block">Fixture y <br>Tablas</br></a>
+            <a href="usuariosLiga.html" class="nav-block">Usuarios<br>compitiendo</br></a>
+            <a href="infoLiga.html" class="nav-block">Mas Datos <br>Torneo</br></a>
+            <a href="#" class="nav-block">Campeones <br>Liga</br></a>
+        </div>
             <div class="content-wrapper">
                 <div class="standings-table">
                     <h2 style="color: #ffffff; background-color: #333333; padding: 10px; margin: 0 0 10px 0; text-align: center;">Tabla de Posiciones</h2>

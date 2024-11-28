@@ -515,6 +515,7 @@ footer {
         height: 40px;
         min-width: 40px;
         white-space: nowrap;
+        margin-bottom: 40px; /* Ajusta el valor según el espacio que necesites */
     }
     
     .nav-block:hover {
