@@ -29,10 +29,10 @@
                 <div class="match-panel">
                     <c:choose>
                         <c:when test="${entry.key == 'liga'}">
-                            <h2>LIGA PLATO</h2>
+                            <h2>&#127942 LIGA PLATO &#127942</h2>
                         </c:when>
                         <c:when test="${entry.key == 'mundial'}">
-                            <h2>MUNDIAL</h2>
+                            <h2>&#127757 MUNDIAL &#127757</h2>
                         </c:when>
                         <c:otherwise>
                             <h2>OTRO EVENTO</h2>
