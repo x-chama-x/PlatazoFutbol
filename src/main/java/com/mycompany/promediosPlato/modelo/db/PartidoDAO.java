@@ -13,52 +13,34 @@ public class PartidoDAO {
 
     public ArrayList<Partido> getPartidos() {
         ArrayList<Partido> partidos = new ArrayList<>();
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        try {
-            connection = pool.getConnection();
-            ps = connection.prepareStatement(SELECT_ALL_PARTIDOS);
-            rs = ps.executeQuery();
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(SELECT_ALL_PARTIDOS);
+             ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                int partidoId = rs.getInt("partidoId");
-                LocalDate fecha = rs.getDate("fecha").toLocalDate();
-                int equipoLocalId = rs.getInt("equipoLocaId");
-                int equipoVisitanteId = rs.getInt("equipoVisitanteId");
-                String resultado = rs.getString("resultado");
-                String tipoEvento = rs.getString("tipoEvento");
-                String faseCopa = rs.getString("faseCopa");
-                Integer jornada = rs.getObject("jornada", Integer.class);
-                String estado = rs.getString("estado");
-
-                Partido partido = new Partido(partidoId, fecha, equipoLocalId, equipoVisitanteId, resultado, tipoEvento, faseCopa, jornada, estado);
+                Partido partido = mapResultSetToPartido(rs);
                 partidos.add(partido);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                pool.freeConnection(connection);
-            }
         }
-
         return partidos;
+    }
+
+    private Connection getConnection() throws SQLException {
+        return ConnectionPool.getInstance().getConnection();
+    }
+
+    private Partido mapResultSetToPartido(ResultSet rs) throws SQLException {
+        int partidoId = rs.getInt("partidoId");
+        LocalDate fecha = rs.getDate("fecha").toLocalDate();
+        int equipoLocalId = rs.getInt("equipoLocaId");
+        int equipoVisitanteId = rs.getInt("equipoVisitanteId");
+        String resultado = rs.getString("resultado");
+        String tipoEvento = rs.getString("tipoEvento");
+        String faseCopa = rs.getString("faseCopa");
+        Integer jornada = rs.getObject("jornada", Integer.class);
+        String estado = rs.getString("estado");
+        return new Partido(partidoId, fecha, equipoLocalId, equipoVisitanteId, resultado, tipoEvento, faseCopa, jornada, estado);
     }
 }

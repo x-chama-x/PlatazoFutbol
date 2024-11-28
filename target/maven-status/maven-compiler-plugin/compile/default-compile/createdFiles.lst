@@ -3,9 +3,11 @@ com\mycompany\promediosPlato\controlador\ProximosPartidosServlet.class
 com\mycompany\promediosPlato\controlador\IndexServlet.class
 com\mycompany\promediosPlato\modelo\db\UsuarioDAO.class
 com\mycompany\promediosPlato\modelo\UsuarioDAOHardcodeado.class
+com\mycompany\promediosPlato\modelo\db\PartidoDAO.class
 com\mycompany\promediosPlato\modelo\GolesPorTiempoDAOHardcodeado.class
 com\mycompany\promediosPlato\modelo\Clasificacion.class
 com\mycompany\promediosPlato\modelo\GolesPorTiempo.class
+com\mycompany\promediosPlato\modelo\db\GolesPorTiempoDAO.class
 com\mycompany\promediosPlato\modelo\Partido.class
 com\mycompany\promediosPlato\modelo\db\ConnectionPool.class
 com\mycompany\promediosPlato\modelo\Usuario.class
