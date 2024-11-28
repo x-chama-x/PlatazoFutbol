@@ -12,10 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LigaServlet extends HttpServlet {
@@ -71,6 +68,16 @@ public class LigaServlet extends HttpServlet {
 
         // Calcular la probabilidad de victoria
         Map<Integer, Map<String, Integer>> probabilidades = calcularProbabilidades(usuarios, partidosFiltrados);
+
+        // Ordenar las clasificaciones por puntos y diferencia de goles
+        clasificaciones.sort(Comparator.comparingInt(Clasificacion::getPuntos)
+                .thenComparingInt(Clasificacion::getDiferenciaGoles)
+                .reversed());
+
+        // Asignar el nuevo índice de clasificación basado en el orden
+        for (int i = 0; i < clasificaciones.size(); i++) {
+            clasificaciones.get(i).setClasificacionId(i + 1);
+        }
 
         request.setAttribute("clasificaciones", clasificaciones);
         request.setAttribute("partidos", partidosFiltrados);
