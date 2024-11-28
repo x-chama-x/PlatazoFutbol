@@ -1,6 +1,9 @@
 package com.mycompany.promediosPlato.controlador;
 
 import com.mycompany.promediosPlato.modelo.*;
+import com.mycompany.promediosPlato.modelo.db.ClasificacionDAO;
+import com.mycompany.promediosPlato.modelo.db.PartidoDAO;
+import com.mycompany.promediosPlato.modelo.db.UsuarioDAO;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -16,16 +19,16 @@ import java.util.stream.Collectors;
 
 public class LigaServlet extends HttpServlet {
 
-    private ClasificacionDAOHardcodeado clasificacionDAO;
-    private PartidoDAOHardcodeado partidoDAO;
-    private UsuarioDAOHardcodeado usuarioDAO;
+    private ClasificacionDAO clasificacionDAO;
+    private PartidoDAO partidoDAO;
+    private UsuarioDAO usuarioDAO;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        clasificacionDAO = new ClasificacionDAOHardcodeado();
-        partidoDAO = new PartidoDAOHardcodeado();
-        usuarioDAO = new UsuarioDAOHardcodeado();
+        clasificacionDAO = new ClasificacionDAO();
+        partidoDAO = new PartidoDAO();
+        usuarioDAO = new UsuarioDAO();
     }
 
     @Override
