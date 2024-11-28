@@ -5,6 +5,10 @@
         <servlet-name>proximos-partidos-servlet</servlet-name>
         <servlet-class>com.mycompany.promediosPlato.controlador.ProximosPartidosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>liga-servlet</servlet-name>
+        <servlet-class>com.mycompany.promediosPlato.controlador.LigaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/assets/*</url-pattern>
@@ -25,6 +29,10 @@
     <servlet-mapping>
         <servlet-name>proximos-partidos-servlet</servlet-name>
         <url-pattern>/prox</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>liga-servlet</servlet-name>
+        <url-pattern>/liga</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -8,13 +8,13 @@
     <div class="container">
         <nav class="nav-desktop menu-index">
             <a href="${pageContext.request.contextPath}/" class="nav-button active">Inicio</a>
-            <a href="subpaginaDeLiga.html" class="nav-button">Liga Plato</a>
+            <a href="liga" class="nav-button">Liga Plato</a>
             <div class="nav-button">Mundial Plato</div>
             <div class="nav-button">Amistosos</div>
         </nav>
         <nav class="nav-mobile menu-index" id="nav-mobile">
             <a href="${pageContext.request.contextPath}/" class="nav-button active">Inicio</a>
-            <a href="subpaginaDeLiga.html" class="nav-button">Liga Plato</a>
+            <a href="liga" class="nav-button">Liga Plato</a>
             <div class="nav-button">Mundial Plato</div>
             <div class="nav-button">Amistosos</div>
         </nav>

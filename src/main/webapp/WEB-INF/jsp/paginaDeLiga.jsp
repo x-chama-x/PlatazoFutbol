@@ -6,39 +6,70 @@
 <body>
 <c:import url="/WEB-INF/jsp/includes/header.jsp" />
     <div class="container">
-        <nav class="nav-desktop menu-index">
+        <nav class="nav-desktop">
             <a href="${pageContext.request.contextPath}/" class="nav-button active">Inicio</a>
-            <a href="liga" class="nav-button">Liga Plato</a>
+            <a href="subpaginaDeLiga.html" class="nav-button">Liga Plato</a>
             <div class="nav-button">Mundial Plato</div>
             <div class="nav-button">Amistosos</div>
         </nav>
-        <nav class="nav-mobile menu-index" id="nav-mobile">
+        <nav class="nav-mobile" id="nav-mobile">
             <a href="${pageContext.request.contextPath}/" class="nav-button active">Inicio</a>
-            <a href="liga" class="nav-button">Liga Plato</a>
+            <a href="subpaginaDeLiga.html" class="nav-button">Liga Plato</a>
             <div class="nav-button">Mundial Plato</div>
             <div class="nav-button">Amistosos</div>
         </nav>
         <main>
-            <div class="top-buttons">
-                <div>
-                    <a href="${pageContext.request.contextPath}/" class="button">PARTIDOS JUGADOS</a>
-                    <a href="prox" class="button">PROXIMOS PARTIDOS</a>
+            <div class="content-wrapper">
+                <div class="standings-table">
+                    <h2 style="color: #ffffff; background-color: #333333; padding: 10px; margin: 0 0 10px 0; text-align: center;">Tabla de Posiciones</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th>Usuario</th>
+                                <th>P</th>
+                                <th>W</th>
+                                <th>D</th>
+                                <th>L</th>
+                                <th>GF</th>
+                                <th>GC</th>
+                                <th>DIF</th>
+                                <th>Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="clasificacion" items="${clasificaciones}">
+                                <tr>
+                                    <td>${clasificacion.clasificacionId}</td>
+                                    <td>${usuarioNombres[clasificacion.usuarioId]}</td>
+                                    <td>${clasificacion.partidosJugados}</td>
+                                    <td>${clasificacion.victorias}</td>
+                                    <td>${clasificacion.empates}</td>
+                                    <td>${clasificacion.derrotas}</td>
+                                    <td>${clasificacion.golesFavor}</td>
+                                    <td>${clasificacion.golesContra}</td>
+                                    <td>${clasificacion.diferenciaGoles}</td>
+                                    <td>${clasificacion.puntos}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-            <c:forEach var="entry" items="${partidosJugadosPorEvento}" varStatus="status">
+                <div class="fixtures-panel">
+                    <div class="fixture-navigation">
+                        <div class="fixture-rounds">
+                            <c:forEach var="i" begin="1" end="${maxJornada}">
+                                <button class="round-button ${i == jornadaSeleccionada ? 'active' : ''}" onclick="location.href='?jornada=${i}'">${i}</button>
+                            </c:forEach>
+                        </div>
+                    </div>
+                    <div class="fixture-header">
+                        <button class="arrow-button">&larr;</button>
+                        <div class="fixture-title">FECHA 14</div>
+                        <button class="arrow-button">&rarr;</button>
+                    </div>
                 <div class="match-panel">
-                    <c:choose>
-                        <c:when test="${entry.key == 'liga'}">
-                            <h2>&#127942 LIGA PLATO &#127942</h2>
-                        </c:when>
-                        <c:when test="${entry.key == 'mundial'}">
-                            <h2>&#127757 MUNDIAL &#127757</h2>
-                        </c:when>
-                        <c:otherwise>
-                            <h2>OTRO EVENTO</h2>
-                        </c:otherwise>
-                    </c:choose>
-                    <c:forEach var="partido" items="${entry.value}">
+                    <c:forEach var="partido" items="${partidos}">
                         <div class="match-card">
                             <div style="display: flex; align-items: stretch; gap: 10px;">
                                 <div style="background-color: #333; padding: 5px 10px; width: 60px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
@@ -59,9 +90,9 @@
                                 </div>
                                 <div style="flex-grow: 1;">
                                     <div class="match-teams">
-                                        <span>${equipoNombres[partido.equipoLocalId]}</span>
+                                        <span>${usuarioNombres[partido.equipoLocalId]}</span>
                                         <span class="match-score">${partido.resultado}</span>
-                                        <span>${equipoNombres[partido.equipoVisitanteId]}</span>
+                                        <span>${usuarioNombres[partido.equipoVisitanteId]}</span>
                                     </div>
                                     <div class="match-details">
                                         <div class="match-scorers">
@@ -88,10 +119,8 @@
                         </div>
                     </c:forEach>
                 </div>
-                <c:if test="${!status.last}">
-                    <br>
-                </c:if>
-            </c:forEach>
+                </div>
+            </div>
         </main>
     </div>
     <footer>
