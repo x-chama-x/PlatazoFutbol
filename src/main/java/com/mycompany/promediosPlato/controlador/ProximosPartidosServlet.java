@@ -1,7 +1,8 @@
 package com.mycompany.promediosPlato.controlador;
 
 import com.mycompany.promediosPlato.modelo.*;
-
+import com.mycompany.promediosPlato.modelo.db.PartidoDAO;
+import com.mycompany.promediosPlato.modelo.db.UsuarioDAO;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -16,14 +17,14 @@ import java.util.Map;
 
 public class ProximosPartidosServlet extends HttpServlet {
 
-    private UsuarioDAOHardcodeado usuarioDAO;
-    private PartidoDAOHardcodeado partidoDAO;
+    private UsuarioDAO usuarioDAO;
+    private PartidoDAO partidoDAO;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        usuarioDAO = new UsuarioDAOHardcodeado();
-        partidoDAO = new PartidoDAOHardcodeado();
+        usuarioDAO = new UsuarioDAO();
+        partidoDAO = new PartidoDAO();
     }
 
     @Override
@@ -33,31 +34,16 @@ public class ProximosPartidosServlet extends HttpServlet {
         ArrayList<Partido> partidos = partidoDAO.getPartidos();
 
         // Crear un mapa que relacione usuarioId con el nombre del equipo
-        Map<Integer, String> equipoNombres = new HashMap<>();
-        for (Usuario usuario : usuarios) {
-            equipoNombres.put(usuario.getUsuarioId(), usuario.getNombre());
-        }
+        Map<Integer, String> equipoNombres = crearMapaEquipoNombres(usuarios);
 
-        // Filtrar los partidos no jugados
-        List<Partido> proximosPartidos = new ArrayList<>();
-        for (Partido partido : partidos) {
-            if (!"finalizado".equals(partido.getEstado())) {
-                proximosPartidos.add(partido);
-            }
-        }
+        // Filtrar y agrupar los partidos no jugados por tipo de evento
+        Map<String, List<Partido>> proximosPartidosPorEvento = filtrarProximosPartidosPorEvento(partidos);
 
         // Calcular la probabilidad de victoria
-        Map<Integer, Map<String, Integer>> probabilidades = new HashMap<>();
-        for (Partido partido : proximosPartidos) {
-            Usuario local = getUsuarioById(usuarios, partido.getEquipoLocalId());
-            Usuario visitante = getUsuarioById(usuarios, partido.getEquipoVisitanteId());
-
-            Map<String, Integer> probabilidad = getStringIntegerMap(local, visitante);
-            probabilidades.put(partido.getPartidoId(), probabilidad);
-        }
+        Map<Integer, Map<String, Integer>> probabilidades = calcularProbabilidades(usuarios, proximosPartidosPorEvento);
 
         // Pasar los datos a la página JSP
-        request.setAttribute("proximosPartidos", proximosPartidos);
+        request.setAttribute("proximosPartidosPorEvento", proximosPartidosPorEvento);
         request.setAttribute("equipoNombres", equipoNombres);
         request.setAttribute("probabilidades", probabilidades);
 
@@ -65,7 +51,45 @@ public class ProximosPartidosServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/jsp/proximosPartidos.jsp").forward(request, response);
     }
 
-    private static Map<String, Integer> getStringIntegerMap(Usuario local, Usuario visitante) {
+    // Crear un mapa que relacione usuarioId con el nombre del equipo
+    private Map<Integer, String> crearMapaEquipoNombres(ArrayList<Usuario> usuarios) {
+        Map<Integer, String> equipoNombres = new HashMap<>();
+        for (Usuario usuario : usuarios) {
+            equipoNombres.put(usuario.getUsuarioId(), usuario.getNombre());
+        }
+        return equipoNombres;
+    }
+
+    // Filtrar y agrupar los partidos no jugados por tipo de evento
+    private Map<String, List<Partido>> filtrarProximosPartidosPorEvento(ArrayList<Partido> partidos) {
+        Map<String, List<Partido>> proximosPartidosPorEvento = new HashMap<>();
+        for (Partido partido : partidos) {
+            if (!"finalizado".equals(partido.getEstado())) {
+                proximosPartidosPorEvento
+                        .computeIfAbsent(partido.getTipoEvento(), k -> new ArrayList<>())
+                        .add(partido);
+            }
+        }
+        return proximosPartidosPorEvento;
+    }
+
+    // Calcular la probabilidad de victoria para cada partido
+    private Map<Integer, Map<String, Integer>> calcularProbabilidades(ArrayList<Usuario> usuarios, Map<String, List<Partido>> proximosPartidosPorEvento) {
+        Map<Integer, Map<String, Integer>> probabilidades = new HashMap<>();
+        for (List<Partido> proximosPartidos : proximosPartidosPorEvento.values()) {
+            for (Partido partido : proximosPartidos) {
+                Usuario local = getUsuarioById(usuarios, partido.getEquipoLocalId());
+                Usuario visitante = getUsuarioById(usuarios, partido.getEquipoVisitanteId());
+
+                Map<String, Integer> probabilidad = calcularProbabilidad(local, visitante);
+                probabilidades.put(partido.getPartidoId(), probabilidad);
+            }
+        }
+        return probabilidades;
+    }
+
+    // Calcular la probabilidad de victoria, empate y derrota entre dos equipos
+    private Map<String, Integer> calcularProbabilidad(Usuario local, Usuario visitante) {
         double probLocal = (local.getNivel() * (double) local.getVictorias() / local.getPartidosJugados()) /
                 ((local.getNivel() * (double) local.getVictorias() / local.getPartidosJugados()) +
                         (visitante.getNivel() * (double) visitante.getVictorias() / visitante.getPartidosJugados()));
@@ -98,6 +122,7 @@ public class ProximosPartidosServlet extends HttpServlet {
         return probabilidad;
     }
 
+    // Obtener un usuario por su ID
     private Usuario getUsuarioById(ArrayList<Usuario> usuarios, int usuarioId) {
         for (Usuario usuario : usuarios) {
             if (usuario.getUsuarioId() == usuarioId) {
