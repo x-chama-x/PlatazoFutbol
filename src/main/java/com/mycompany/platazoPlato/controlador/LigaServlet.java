@@ -1,10 +1,13 @@
-package com.mycompany.promediosPlato.controlador;
+package com.mycompany.platazoPlato.controlador;
 
-import com.mycompany.promediosPlato.modelo.*;
-import com.mycompany.promediosPlato.modelo.db.ClasificacionDAO;
-import com.mycompany.promediosPlato.modelo.db.GolesPorTiempoDAO;
-import com.mycompany.promediosPlato.modelo.db.PartidoDAO;
-import com.mycompany.promediosPlato.modelo.db.UsuarioDAO;
+import com.mycompany.platazoPlato.modelo.GolesPorTiempo;
+import com.mycompany.platazoPlato.modelo.Usuario;
+import com.mycompany.platazoPlato.modelo.Partido;
+import com.mycompany.platazoPlato.modelo.Clasificacion;
+import com.mycompany.platazoPlato.modelo.db.ClasificacionDAO;
+import com.mycompany.platazoPlato.modelo.db.GolesPorTiempoDAO;
+import com.mycompany.platazoPlato.modelo.db.PartidoDAO;
+import com.mycompany.platazoPlato.modelo.db.UsuarioDAO;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

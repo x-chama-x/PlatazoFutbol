@@ -1,4 +1,4 @@
-package com.mycompany.promediosPlato.modelo;
+package com.mycompany.platazoPlato.modelo;
 
 import java.util.ArrayList;
 

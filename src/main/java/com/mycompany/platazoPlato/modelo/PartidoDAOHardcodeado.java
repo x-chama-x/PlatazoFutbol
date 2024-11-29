@@ -1,4 +1,4 @@
-package com.mycompany.promediosPlato.modelo;
+package com.mycompany.platazoPlato.modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

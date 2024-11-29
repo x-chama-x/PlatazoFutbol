@@ -1,7 +1,7 @@
-package com.mycompany.promediosPlato.controlador;
+package com.mycompany.platazoPlato.controlador;
 
-import com.mycompany.promediosPlato.modelo.Usuario;
-import com.mycompany.promediosPlato.modelo.db.UsuarioDAO;
+import com.mycompany.platazoPlato.modelo.Usuario;
+import com.mycompany.platazoPlato.modelo.db.UsuarioDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

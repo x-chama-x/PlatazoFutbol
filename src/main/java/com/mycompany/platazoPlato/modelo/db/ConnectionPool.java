@@ -1,4 +1,4 @@
-package com.mycompany.promediosPlato.modelo.db;
+package com.mycompany.platazoPlato.modelo.db;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;

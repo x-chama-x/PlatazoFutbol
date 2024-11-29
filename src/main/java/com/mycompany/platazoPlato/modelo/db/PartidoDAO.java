@@ -1,6 +1,6 @@
-package com.mycompany.promediosPlato.modelo.db;
+package com.mycompany.platazoPlato.modelo.db;
 
-import com.mycompany.promediosPlato.modelo.Partido;
+import com.mycompany.platazoPlato.modelo.Partido;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,6 +1,6 @@
-package com.mycompany.promediosPlato.modelo;
+package com.mycompany.platazoPlato.modelo;
 
-import com.mycompany.promediosPlato.modelo.Clasificacion;
+import com.mycompany.platazoPlato.modelo.Clasificacion;
 import java.util.ArrayList;
 
 public class ClasificacionDAOHardcodeado {
