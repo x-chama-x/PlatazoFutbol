@@ -7,6 +7,7 @@ public class Usuario implements Serializable {
     private int partidosJugados;
     private int victorias;
     private int nivel;
+    private int diferencia;
 
     public Usuario(){
     }
@@ -57,6 +58,14 @@ public class Usuario implements Serializable {
 
     public void setNivel(int nivel) {
         this.nivel = nivel;
+    }
+
+    public int getDiferencia() {
+        return diferencia;
+    }
+
+    public void setDiferencia(int diferencia) {
+        this.diferencia = diferencia;
     }
 
     @Override

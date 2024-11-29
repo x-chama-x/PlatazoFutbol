@@ -194,6 +194,7 @@ footer {
     background-color: #1a1a1a;
     padding: 10px;
     border-radius: 5px;
+    height: 445px; /* Establece una altura fija */
 }
 .standings-table table {
     width: 100%;
@@ -241,6 +242,7 @@ footer {
     background-color: #0B4D2C;
     padding: 0;
     margin-bottom: 10px;
+    border: 1px solid black; /* Agrega un borde negro */
 }
 .arrow-button {
     background-color: #004225;
@@ -513,6 +515,7 @@ footer {
         height: 40px;
         min-width: 40px;
         white-space: nowrap;
+        margin-bottom: 40px; /* Ajusta el valor según el espacio que necesites */
     }
     
     .nav-block:hover {
@@ -542,6 +545,33 @@ footer {
     .away-win { background-color: #5f1bb8cb; }
 
             
-
-            
-
+/* Estilo específico para la tabla de usuarios de la liga */
+.usuarios-liga-table  {
+    flex: 1;
+    background-color: #1a1a1a;
+    padding: 10px;
+    border-radius: 5px;
+    height: 445px; /* Establece una altura fija */
+    max-width: 500px; /* Establece un ancho máximo */
+    margin: 0 auto; /* Centra la tabla horizontalmente */
+}
+.usuarios-liga-table table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ffffff;
+}
+.usuarios-liga-table th, .usuarios-liga-table td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #333333;
+}
+.usuarios-liga-table th {
+    background-color: #333333;
+    color: #ffffff;
+}
+.usuarios-liga-table tbody tr:nth-child(even) {
+    background-color: #2a2a2a;
+}
+.usuarios-liga-table tbody tr:hover {
+    background-color: #404040;
+}
