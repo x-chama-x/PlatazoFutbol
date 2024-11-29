@@ -4,6 +4,7 @@ com\mycompany\promediosPlato\controlador\IndexServlet.class
 com\mycompany\promediosPlato\modelo\db\UsuarioDAO.class
 com\mycompany\promediosPlato\modelo\ClasificacionDAOHardcodeado.class
 com\mycompany\promediosPlato\modelo\UsuarioDAOHardcodeado.class
+com\mycompany\promediosPlato\controlador\UsuariosLigaServlet.class
 com\mycompany\promediosPlato\controlador\LigaServlet.class
 com\mycompany\promediosPlato\modelo\db\PartidoDAO.class
 com\mycompany\promediosPlato\modelo\GolesPorTiempoDAOHardcodeado.class

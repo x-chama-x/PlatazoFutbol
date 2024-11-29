@@ -9,6 +9,10 @@
         <servlet-name>liga-servlet</servlet-name>
         <servlet-class>com.mycompany.promediosPlato.controlador.LigaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>usuarios-liga-servlet</servlet-name>
+        <servlet-class>com.mycompany.promediosPlato.controlador.UsuariosLigaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/assets/*</url-pattern>
@@ -33,6 +37,10 @@
     <servlet-mapping>
         <servlet-name>liga-servlet</servlet-name>
         <url-pattern>/liga</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>usuarios-liga-servlet</servlet-name>
+        <url-pattern>/usuarios</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -10,7 +10,7 @@
         <main>
         <div class="navigation-blocks">
             <a href="liga" class="nav-block">Fixture y <br>Tablas</br></a>
-            <a href="usuariosLiga.html" class="nav-block">Usuarios<br>compitiendo</br></a>
+            <a href="usuarios" class="nav-block">Usuarios<br>compitiendo</br></a>
             <a href="infoLiga.html" class="nav-block">Mas Datos <br>Torneo</br></a>
             <a href="#" class="nav-block">Campeones <br>Liga</br></a>
         </div>
@@ -95,11 +95,20 @@
                                         </c:choose>
                                     </div>
                                     <div style="flex-grow: 1;">
-                                        <div class="match-teams">
-                                            <span>${usuarioNombres[partido.equipoLocalId]}</span>
-                                            <span class="match-score">${partido.resultado}</span>
-                                            <span>${usuarioNombres[partido.equipoVisitanteId]}</span>
-                                        </div>
+                                    <div class="match-teams">
+                                        <span>${usuarioNombres[partido.equipoLocalId]}</span>
+                                        <span class="match-score">
+                                            <c:choose>
+                                                <c:when test="${empty partido.estado}">
+                                                    vs
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${partido.resultado}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </span>
+                                        <span>${usuarioNombres[partido.equipoVisitanteId]}</span>
+                                    </div>
                                         <div class="match-details">
                                             <div class="match-scorers">
                                                 <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
