@@ -26,6 +26,7 @@
                                     <th>PJ</th>
                                     <th>PG</th>
                                     <th>PP</th>
+                                    <th>DIF</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,6 +37,7 @@
                                         <td>${usuario.partidosJugados}</td>
                                         <td>${usuario.victorias}</td>
                                         <td>${usuario.partidosJugados - usuario.victorias}</td>
+                                        <td>${usuario.diferencia}</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
