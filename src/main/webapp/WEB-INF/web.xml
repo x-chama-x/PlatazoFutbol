@@ -3,7 +3,15 @@
     <!-- Configuración para servir recursos estáticos -->
     <servlet>
         <servlet-name>proximos-partidos-servlet</servlet-name>
-        <servlet-class>com.mycompany.promediosPlato.controlador.ProximosPartidosServlet</servlet-class>
+        <servlet-class>com.mycompany.platazoPlato.controlador.ProximosPartidosServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>liga-servlet</servlet-name>
+        <servlet-class>com.mycompany.platazoPlato.controlador.LigaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>usuarios-liga-servlet</servlet-name>
+        <servlet-class>com.mycompany.platazoPlato.controlador.UsuariosLigaServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
@@ -12,7 +20,7 @@
     <!-- Configuración del IndexServlet -->
     <servlet>
         <servlet-name>index-servlet</servlet-name>
-        <servlet-class>com.mycompany.promediosPlato.controlador.IndexServlet</servlet-class>
+        <servlet-class>com.mycompany.platazoPlato.controlador.IndexServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>index-servlet</servlet-name>
@@ -25,6 +33,14 @@
     <servlet-mapping>
         <servlet-name>proximos-partidos-servlet</servlet-name>
         <url-pattern>/prox</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>liga-servlet</servlet-name>
+        <url-pattern>/liga</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>usuarios-liga-servlet</servlet-name>
+        <url-pattern>/usuarios</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
