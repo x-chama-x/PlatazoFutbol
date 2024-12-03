@@ -1,5 +1,6 @@
 package com.mycompany.platazoPlato.modelo.db;
 
+import com.mycompany.platazoPlato.modelo.Estado;
 import com.mycompany.platazoPlato.modelo.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UsuarioDAO {
-    private static final String SELECT_ALL_USUARIOS = "SELECT usuarioId, nombre, partidosJugados, victorias, nivel FROM Usuario";
+    private static final String SELECT_ALL_USUARIOS = "SELECT usuarioId, nombre, partidosJugados, victorias, nivel, estado FROM Usuario";
 
     public ArrayList<Usuario> getUsuarios() {
         ArrayList<Usuario> usuarios = new ArrayList<>();
@@ -36,6 +37,7 @@ public class UsuarioDAO {
         int partidosJugados = rs.getInt("partidosJugados");
         int victorias = rs.getInt("victorias");
         int nivel = rs.getInt("nivel");
-        return new Usuario(usuarioId, nombre, partidosJugados, victorias, nivel);
+        Estado estado = Estado.valueOf(rs.getString("estado").toUpperCase());
+        return new Usuario(usuarioId, nombre, partidosJugados, victorias, nivel, estado);
     }
 }

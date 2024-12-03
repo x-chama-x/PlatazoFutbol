@@ -1,5 +1,6 @@
 com\mycompany\platazoPlato\controlador\LigaServlet.class
 com\mycompany\platazoPlato\modelo\db\ClasificacionDAO.class
+com\mycompany\platazoPlato\modelo\Estado.class
 com\mycompany\platazoPlato\modelo\PartidoDAOHardcodeado.class
 com\mycompany\platazoPlato\controlador\IndexServlet.class
 com\mycompany\platazoPlato\modelo\db\GolesPorTiempoDAO.class
