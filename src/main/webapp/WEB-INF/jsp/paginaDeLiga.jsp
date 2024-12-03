@@ -128,14 +128,14 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
-                                            <c:if test="${probabilidades[partido.partidoId] != null}">
-                                                <div class="probability-bar">
-                                                    <c:set var="probabilidad" value="${probabilidades[partido.partidoId]}" />
-                                                    <div class="probability-segment home-win" style="width: ${probabilidad.local}%;">${probabilidad.local}%</div>
-                                                    <div class="probability-segment draw" style="width: ${probabilidad.empate}%;">${probabilidad.empate}%</div>
-                                                    <div class="probability-segment away-win" style="width: ${probabilidad.visitante}%;">${probabilidad.visitante}%</div>
-                                                </div>
-                                            </c:if>
+                                                <c:if test="${probabilidades[partido.partidoId] != null && partido.estado != 'suspendido'}">
+                                                    <div class="probability-bar">
+                                                        <c:set var="probabilidad" value="${probabilidades[partido.partidoId]}" />
+                                                        <div class="probability-segment home-win" style="width: ${probabilidad.local}%;">${probabilidad.local}%</div>
+                                                        <div class="probability-segment draw" style="width: ${probabilidad.empate}%;">${probabilidad.empate}%</div>
+                                                        <div class="probability-segment away-win" style="width: ${probabilidad.visitante}%;">${probabilidad.visitante}%</div>
+                                                    </div>
+                                                </c:if>
                                         </div>
                                         <div style="padding: 5px; display: flex; align-items: center;">
                                             <button style="background: none; border: none; color: #000000; cursor: pointer; font-size: 20px;">+</button>
