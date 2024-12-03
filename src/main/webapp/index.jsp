@@ -62,21 +62,28 @@
                                         <span>${equipoNombres[partido.equipoVisitanteId]}</span>
                                     </div>
                                     <div class="match-details">
-                                        <div class="match-scorers">
-                                            <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
-                                                <c:if test="${gol.golesLocal > 0}">
-                                                    <div>${gol.golesLocalFormatted}</div>
-                                                </c:if>
-                                            </c:forEach>
-                                        </div>
-                                        <div class="match-status"></div>
-                                        <div class="match-scorers" style="text-align: right;">
-                                            <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
-                                                <c:if test="${gol.golesVisitante > 0}">
-                                                    <div>${gol.golesVisitanteFormatted}</div>
-                                                </c:if>
-                                            </c:forEach>
-                                        </div>
+                                        <c:choose>
+                                            <c:when test="${partido.estado == 'suspendido' && not empty partido.nota}">
+                                                <div><b style="color: black;">${partido.nota}</b></div>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div class="match-scorers">
+                                                    <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
+                                                        <c:if test="${gol.golesLocal > 0}">
+                                                            <div>${gol.golesLocalFormatted}</div>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </div>
+                                                <div class="match-status"></div>
+                                                <div class="match-scorers" style="text-align: right;">
+                                                    <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
+                                                        <c:if test="${gol.golesVisitante > 0}">
+                                                            <div>${gol.golesVisitanteFormatted}</div>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </div>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                 </div>
                                 <div style="padding: 5px; display: flex; align-items: center;">

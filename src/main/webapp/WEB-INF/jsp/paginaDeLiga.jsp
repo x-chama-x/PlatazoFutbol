@@ -70,72 +70,79 @@
                                 <h2>OTRO EVENTO</h2>
                             </c:otherwise>
                         </c:choose>
-                        <c:forEach var="partido" items="${partidos}">
-                            <div class="match-card">
-                                <div style="display: flex; align-items: stretch; gap: 10px;">
-                                    <div style="background-color: #333; padding: 5px 10px; width: 60px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
-                                        <c:choose>
-                                            <c:when test="${partido.estado == 'finalizado'}">
-                                                <div>Final</div>
-                                            </c:when>
-                                            <c:when test="${partido.estado == 'suspendido'}">
-                                                <div style="background-color: red;">Susp.</div>
-                                            </c:when>
-                                            <c:when test="${partido.estado == 'en_progreso'}">
-                                                <div>En progreso</div>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <div>${partido.fecha}</div>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </div>
-                                    <div style="flex-grow: 1;">
-                                    <div class="match-teams">
-                                        <span>${usuarioNombres[partido.equipoLocalId]}</span>
-                                        <span class="match-score">
+                            <c:forEach var="partido" items="${partidos}">
+                                <div class="match-card">
+                                    <div style="display: flex; align-items: stretch; gap: 10px;">
+                                        <div style="background-color: #333; padding: 5px 10px; width: 60px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
                                             <c:choose>
-                                                <c:when test="${empty partido.estado || empty partido.resultado}">
-                                                    vs
+                                                <c:when test="${partido.estado == 'finalizado'}">
+                                                    <div>Final</div>
+                                                </c:when>
+                                                <c:when test="${partido.estado == 'suspendido'}">
+                                                    <div style="background-color: red;">Susp.</div>
+                                                </c:when>
+                                                <c:when test="${partido.estado == 'en_progreso'}">
+                                                    <div>En progreso</div>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    ${partido.resultado}
+                                                    <div>${partido.fecha}</div>
                                                 </c:otherwise>
                                             </c:choose>
-                                        </span>
-                                        <span>${usuarioNombres[partido.equipoVisitanteId]}</span>
-                                    </div>
-                                        <div class="match-details">
-                                            <div class="match-scorers">
-                                                <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
-                                                    <c:if test="${gol.golesLocal > 0}">
-                                                        <div>${gol.golesLocalFormatted}</div>
-                                                    </c:if>
-                                                </c:forEach>
-                                            </div>
-                                            <div class="match-status"></div>
-                                            <div class="match-scorers" style="text-align: right;">
-                                                <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
-                                                    <c:if test="${gol.golesVisitante > 0}">
-                                                        <div>${gol.golesVisitanteFormatted}</div>
-                                                    </c:if>
-                                                </c:forEach>
-                                            </div>
                                         </div>
-                                        <c:if test="${probabilidades[partido.partidoId] != null}">
-                                            <div class="probability-bar">
-                                                <c:set var="probabilidad" value="${probabilidades[partido.partidoId]}" />
-                                                <div class="probability-segment home-win" style="width: ${probabilidad.local}%;">${probabilidad.local}%</div>
-                                                <div class="probability-segment draw" style="width: ${probabilidad.empate}%;">${probabilidad.empate}%</div>
-                                                <div class="probability-segment away-win" style="width: ${probabilidad.visitante}%;">${probabilidad.visitante}%</div>
+                                        <div style="flex-grow: 1;">
+                                            <div class="match-teams">
+                                                <span>${usuarioNombres[partido.equipoLocalId]}</span>
+                                                <span class="match-score">
+                                                    <c:choose>
+                                                        <c:when test="${empty partido.estado || empty partido.resultado}">
+                                                            vs
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            ${partido.resultado}
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </span>
+                                                <span>${usuarioNombres[partido.equipoVisitanteId]}</span>
                                             </div>
-                                        </c:if>
-                                    </div>
-                                    <div style="padding: 5px; display: flex; align-items: center;">
-                                        <button style="background: none; border: none; color: #000000; cursor: pointer; font-size: 20px;">+</button>
+                                            <div class="match-details">
+                                                <c:choose>
+                                                    <c:when test="${partido.estado == 'suspendido' && not empty partido.nota}">
+                                                        <div><b style="color: black;">${partido.nota}</b></div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div class="match-scorers">
+                                                            <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
+                                                                <c:if test="${gol.golesLocal > 0}">
+                                                                    <div>${gol.golesLocalFormatted}</div>
+                                                                </c:if>
+                                                            </c:forEach>
+                                                        </div>
+                                                        <div class="match-status"></div>
+                                                        <div class="match-scorers" style="text-align: right;">
+                                                            <c:forEach var="gol" items="${golesPorPartido[partido.partidoId]}">
+                                                                <c:if test="${gol.golesVisitante > 0}">
+                                                                    <div>${gol.golesVisitanteFormatted}</div>
+                                                                </c:if>
+                                                            </c:forEach>
+                                                        </div>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                            <c:if test="${probabilidades[partido.partidoId] != null}">
+                                                <div class="probability-bar">
+                                                    <c:set var="probabilidad" value="${probabilidades[partido.partidoId]}" />
+                                                    <div class="probability-segment home-win" style="width: ${probabilidad.local}%;">${probabilidad.local}%</div>
+                                                    <div class="probability-segment draw" style="width: ${probabilidad.empate}%;">${probabilidad.empate}%</div>
+                                                    <div class="probability-segment away-win" style="width: ${probabilidad.visitante}%;">${probabilidad.visitante}%</div>
+                                                </div>
+                                            </c:if>
+                                        </div>
+                                        <div style="padding: 5px; display: flex; align-items: center;">
+                                            <button style="background: none; border: none; color: #000000; cursor: pointer; font-size: 20px;">+</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </c:forEach>
+                            </c:forEach>
                     </div>
                 </div>
             </div>

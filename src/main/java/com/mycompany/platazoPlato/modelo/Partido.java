@@ -13,11 +13,12 @@ public class Partido implements Serializable {
     private String faseCopa; // 'octavos', 'cuartos', 'semifinal', 'final', 'otro', null si no aplica
     private Integer jornada; // Puede ser null si no aplica
     private String estado; // 'finalizado', 'suspendido', 'en_progreso'
+    private String nota; // Nueva nota para partidos suspendidos
 
     public Partido(){
     }
 
-    public Partido(int partidoId, LocalDate fecha, int equipoLocalId, int equipoVisitanteId, String resultado, String tipoEvento, String faseCopa, Integer jornada, String estado) {
+    public Partido(int partidoId, LocalDate fecha, int equipoLocalId, int equipoVisitanteId, String resultado, String tipoEvento, String faseCopa, Integer jornada, String estado, String nota) {
         this.partidoId = partidoId;
         this.fecha = fecha;
         this.equipoLocalId = equipoLocalId;
@@ -27,6 +28,7 @@ public class Partido implements Serializable {
         this.faseCopa = faseCopa;
         this.jornada = jornada;
         this.estado = estado;
+        this.nota = nota;
     }
 
     public int getPartidoId() {
@@ -99,6 +101,14 @@ public class Partido implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getNota() {
+        return nota;
+    }
+
+    public void setNota(String nota) {
+        this.nota = nota;
     }
 
     @Override

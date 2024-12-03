@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PartidoDAO {
-    private static final String SELECT_ALL_PARTIDOS = "SELECT partidoId, fecha, equipoLocaId, equipoVisitanteId, resultado, tipoEvento, faseCopa, jornada, estado FROM Partido";
+    private static final String SELECT_ALL_PARTIDOS = "SELECT partidoId, fecha, equipoLocaId, equipoVisitanteId, resultado, tipoEvento, faseCopa, jornada, estado, nota FROM Partido";
 
     public ArrayList<Partido> getPartidos() {
         ArrayList<Partido> partidos = new ArrayList<>();
@@ -41,6 +41,7 @@ public class PartidoDAO {
         String faseCopa = rs.getString("faseCopa");
         Integer jornada = rs.getObject("jornada", Integer.class);
         String estado = rs.getString("estado");
-        return new Partido(partidoId, fecha, equipoLocalId, equipoVisitanteId, resultado, tipoEvento, faseCopa, jornada, estado);
+        String nota = rs.getString("nota");
+        return new Partido(partidoId, fecha, equipoLocalId, equipoVisitanteId, resultado, tipoEvento, faseCopa, jornada, estado, nota);
     }
 }
