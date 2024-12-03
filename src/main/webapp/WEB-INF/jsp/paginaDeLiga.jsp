@@ -94,7 +94,7 @@
                                         <span>${usuarioNombres[partido.equipoLocalId]}</span>
                                         <span class="match-score">
                                             <c:choose>
-                                                <c:when test="${empty partido.estado}">
+                                                <c:when test="${empty partido.estado || empty partido.resultado}">
                                                     vs
                                                 </c:when>
                                                 <c:otherwise>
@@ -121,7 +121,7 @@
                                                 </c:forEach>
                                             </div>
                                         </div>
-                                        <c:if test="${partido.estado != 'finalizado'}">
+                                        <c:if test="${probabilidades[partido.partidoId] != null}">
                                             <div class="probability-bar">
                                                 <c:set var="probabilidad" value="${probabilidades[partido.partidoId]}" />
                                                 <div class="probability-segment home-win" style="width: ${probabilidad.local}%;">${probabilidad.local}%</div>

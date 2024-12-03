@@ -49,7 +49,16 @@
                                 <div style="flex-grow: 1;">
                                     <div class="match-teams">
                                         <span>${equipoNombres[partido.equipoLocalId]}</span>
-                                        <span class="match-score">${partido.resultado}</span>
+                                        <span class="match-score">
+                                            <c:choose>
+                                                <c:when test="${empty partido.resultado}">
+                                                    vs
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${partido.resultado}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </span>
                                         <span>${equipoNombres[partido.equipoVisitanteId]}</span>
                                     </div>
                                     <div class="match-details">

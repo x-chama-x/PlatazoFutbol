@@ -56,7 +56,7 @@ public class IndexServlet extends HttpServlet {
         // Filtrar y agrupar los partidos jugados por tipo de evento
         Map<String, List<Partido>> partidosJugadosPorEvento = new HashMap<>();
         for (Partido partido : partidos) {
-            if ("finalizado".equals(partido.getEstado())) {
+            if ("finalizado".equals(partido.getEstado()) || "suspendido".equals(partido.getEstado())) {
                 partidosJugadosPorEvento
                         .computeIfAbsent(partido.getTipoEvento(), k -> new ArrayList<>())
                         .add(partido);

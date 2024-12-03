@@ -65,7 +65,7 @@ public class ProximosPartidosServlet extends HttpServlet {
     private Map<String, List<Partido>> filtrarProximosPartidosPorEvento(ArrayList<Partido> partidos) {
         Map<String, List<Partido>> proximosPartidosPorEvento = new HashMap<>();
         for (Partido partido : partidos) {
-            if (!"finalizado".equals(partido.getEstado())) {
+            if (!"finalizado".equals(partido.getEstado()) && !"suspendido".equals(partido.getEstado())) {
                 proximosPartidosPorEvento
                         .computeIfAbsent(partido.getTipoEvento(), k -> new ArrayList<>())
                         .add(partido);

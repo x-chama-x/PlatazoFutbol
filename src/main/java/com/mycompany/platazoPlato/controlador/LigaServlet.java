@@ -101,8 +101,13 @@ public class LigaServlet extends HttpServlet {
                 Usuario local = getUsuarioById(usuarios, partido.getEquipoLocalId());
                 Usuario visitante = getUsuarioById(usuarios, partido.getEquipoVisitanteId());
 
-                Map<String, Integer> probabilidad = calcularProbabilidad(local, visitante);
-                probabilidades.put(partido.getPartidoId(), probabilidad);
+                // Verificar si los datos del usuario no son todos ceros
+                if ((local.getNivel() != 0 || local.getVictorias() != 0 || local.getPartidosJugados() != 0) &&
+                        (visitante.getNivel() != 0 || visitante.getVictorias() != 0 || visitante.getPartidosJugados() != 0)) {
+
+                    Map<String, Integer> probabilidad = calcularProbabilidad(local, visitante);
+                    probabilidades.put(partido.getPartidoId(), probabilidad);
+                }
             }
         }
         return probabilidades;
