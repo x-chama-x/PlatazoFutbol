@@ -39,6 +39,9 @@
                                         <span class="match-score">vs</span>
                                         <span>${equipoNombres[partido.equipoVisitanteId]}</span>
                                     </div>
+                                    <c:if test="${not empty partido.nota}">
+                                        <div><b style="color: black; font-size: 13px;">${partido.nota}</b></div>
+                                    </c:if>
                                     <div class="probability-bar">
                                         <c:set var="probabilidad" value="${probabilidades[partido.partidoId]}" />
                                         <div class="probability-segment home-win" style="width: ${probabilidad.local}%;">${probabilidad.local}%</div>
