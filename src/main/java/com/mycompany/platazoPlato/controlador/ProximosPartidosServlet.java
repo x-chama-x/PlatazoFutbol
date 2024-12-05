@@ -32,7 +32,7 @@ public class ProximosPartidosServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Obtener los datos de los usuarios y partidos
         ArrayList<Usuario> usuarios = usuarioDAO.getUsuarios();
-        ArrayList<Partido> partidos = partidoDAO.getPartidos();
+        ArrayList<Partido> partidos = partidoDAO.getPartidosProximasDosSemanas();
 
         // Crear un mapa que relacione usuarioId con el nombre del equipo
         Map<Integer, String> equipoNombres = crearMapaEquipoNombres(usuarios);

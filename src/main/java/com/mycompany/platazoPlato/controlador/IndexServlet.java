@@ -38,7 +38,7 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Obtener los datos de los usuarios, partidos y goles por tiempo
         ArrayList<Usuario> usuarios = usuarioDAO.getUsuarios();
-        ArrayList<Partido> partidos = partidoDAO.getPartidos();
+        ArrayList<Partido> partidos = partidoDAO.getPartidosDelMesActual();
         ArrayList<GolesPorTiempo> golesPorTiempo = golesPorTiempoDAO.getGolesPorTiempo();
 
         // Crear un mapa que relacione usuarioId con el nombre del equipo
