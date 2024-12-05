@@ -106,7 +106,7 @@
                                             </div>
                                             <div class="match-details">
                                                 <c:choose>
-                                                    <c:when test="${partido.estado == 'suspendido' && not empty partido.nota}">
+                                                    <c:when test="${partido.estado == 'suspendido' || not empty partido.nota}">
                                                         <div><b style="color: black;">${partido.nota}</b></div>
                                                     </c:when>
                                                     <c:otherwise>
