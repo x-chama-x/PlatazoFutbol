@@ -11,7 +11,7 @@
             <div class="top-buttons">
                 <div>
                     <a href="${pageContext.request.contextPath}/" class="button">PARTIDOS JUGADOS</a>
-                    <a href="prox" class="button active">PRÓXIMOS PARTIDOS</a>
+                    <a href="prox" class="button active">PROXIMOS PARTIDOS</a>
                 </div>
             </div>
             <c:forEach var="entry" items="${proximosPartidosPorEvento}" varStatus="status">

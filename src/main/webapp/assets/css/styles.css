@@ -189,33 +189,8 @@ footer {
     justify-content: center;
     max-width: 600px;
 }
-.standings-table {
-    flex: 1;
-    background-color: #1a1a1a;
-    padding: 10px;
-    border-radius: 5px;
-    height: 445px; /* Establece una altura fija */
-}
-.standings-table table {
-    width: 100%;
-    border-collapse: collapse;
-    color: #ffffff;
-}
-.standings-table th, .standings-table td {
-    padding: 8px;
-    text-align: center;
-    border-bottom: 1px solid #333333;
-}
-.standings-table th {
-    background-color: #333333;
-    color: #ffffff;
-}
-.standings-table tbody tr:nth-child(even) {
-    background-color: #2a2a2a;
-}
-.standings-table tbody tr:hover {
-    background-color: #404040;
-}
+
+
 .round-button {
     background-color: #1A613C;
     color: #B4D335;
@@ -545,33 +520,72 @@ footer {
     .away-win { background-color: #5f1bb8cb; }
 
             
-/* Estilo específico para la tabla de usuarios de la liga */
-.usuarios-liga-table  {
+    /* Estilo específico para la tabla de usuarios de la liga */
+    .usuarios-liga-table  {
+        flex: 1;
+        background-color: #1a1a1a;
+        padding: 10px;
+        border-radius: 5px;
+        max-width: 500px; /* Establece un ancho máximo */
+        margin: 0 auto; /* Centra la tabla horizontalmente */
+    }
+    .usuarios-liga-table table {
+        width: 100%;
+        border-collapse: collapse;
+        color: #ffffff;
+    }
+    .usuarios-liga-table th, .usuarios-liga-table td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #333333;
+    }
+    .usuarios-liga-table th {
+        background-color: #333333;
+        color: #ffffff;
+    }
+    .usuarios-liga-table tbody tr:nth-child(even) {
+        background-color: #2a2a2a;
+    }
+    .usuarios-liga-table tbody tr:hover {
+        background-color: #404040;
+    }
+
+.content-wrapper {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    align-items: flex-start; /* Alinea los elementos al inicio */
+}
+
+.standings-table {
     flex: 1;
     background-color: #1a1a1a;
     padding: 10px;
     border-radius: 5px;
-    height: 445px; /* Establece una altura fija */
-    max-width: 500px; /* Establece un ancho máximo */
-    margin: 0 auto; /* Centra la tabla horizontalmente */
+    /* Eliminar la altura fija */
 }
-.usuarios-liga-table table {
+
+.standings-table table {
     width: 100%;
     border-collapse: collapse;
     color: #ffffff;
 }
-.usuarios-liga-table th, .usuarios-liga-table td {
+
+.standings-table th, .standings-table td {
     padding: 8px;
     text-align: center;
     border-bottom: 1px solid #333333;
 }
-.usuarios-liga-table th {
+
+.standings-table th {
     background-color: #333333;
     color: #ffffff;
 }
-.usuarios-liga-table tbody tr:nth-child(even) {
+
+.standings-table tbody tr:nth-child(even) {
     background-color: #2a2a2a;
 }
-.usuarios-liga-table tbody tr:hover {
+
+.standings-table tbody tr:hover {
     background-color: #404040;
 }
