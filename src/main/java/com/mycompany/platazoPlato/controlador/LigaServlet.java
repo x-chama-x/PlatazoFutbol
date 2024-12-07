@@ -64,6 +64,12 @@ public class LigaServlet extends HttpServlet {
         String jornadaParam = request.getParameter("jornada");
         int jornadaSeleccionada = jornadaParam != null ? Integer.parseInt(jornadaParam) : 1;
 
+        // Verificar si la jornada seleccionada es válida
+        if (jornadaSeleccionada < 1 || jornadaSeleccionada > maxJornada) {
+            response.sendRedirect(request.getContextPath() + "/liga");
+            return;
+        }
+
         // Filtrar los partidos por la jornada seleccionada
         List<Partido> partidosFiltrados = partidos.stream()
                 .filter(p -> p.getJornada() != null && p.getJornada() == jornadaSeleccionada)
