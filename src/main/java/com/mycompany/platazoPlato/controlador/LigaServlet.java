@@ -121,30 +121,56 @@ public class LigaServlet extends HttpServlet {
 
     // Calcular la probabilidad de victoria, empate y derrota entre dos equipos
     private Map<String, Integer> calcularProbabilidad(Usuario local, Usuario visitante) {
-        double probLocal = (local.getNivel() * (double) local.getVictorias() / local.getPartidosJugados()) /
-                ((local.getNivel() * (double) local.getVictorias() / local.getPartidosJugados()) +
-                        (visitante.getNivel() * (double) visitante.getVictorias() / visitante.getPartidosJugados()));
+        final double MATCH_WEIGHT = 0.55;  // 55% importancia a los partidos
+        final double LEVEL_WEIGHT = 0.45;  // 45% importancia al nivel
 
-        double probVisitante = (visitante.getNivel() * (double) visitante.getVictorias() / visitante.getPartidosJugados()) /
-                ((local.getNivel() * (double) local.getVictorias() / local.getPartidosJugados()) +
-                        (visitante.getNivel() * (double) visitante.getVictorias() / visitante.getPartidosJugados()));
+        // Calcular el rendimiento basado en los partidos
+        double matchPerformanceLocal = (double) local.getVictorias() / local.getPartidosJugados();
+        double matchPerformanceVisitante = (double) visitante.getVictorias() / visitante.getPartidosJugados();
 
-        double probEmpate = 2 * probLocal * probVisitante / (probLocal + probVisitante);
+        // Calcular la contribución del nivel (normalizado)
+        double normalizedLevelLocal = local.getNivel() / 10.0;  // Suponiendo que el nivel máximo es 10
+        double normalizedLevelVisitante = visitante.getNivel() / 10.0;
+
+        // Combinar el rendimiento de los partidos y el nivel con los pesos ajustados
+        double factorLocal = (matchPerformanceLocal * MATCH_WEIGHT) + (normalizedLevelLocal * LEVEL_WEIGHT);
+        double factorVisitante = (matchPerformanceVisitante * MATCH_WEIGHT) + (normalizedLevelVisitante * LEVEL_WEIGHT);
+
+        // Cálculo inicial de probabilidades
+        double probLocal = factorLocal / (factorLocal + factorVisitante);
+        double probEmpate = 2 * (factorLocal * factorVisitante) / Math.pow(factorLocal + factorVisitante, 2);
 
         // Limitar la probabilidad de empate a un máximo de 40%
         if (probEmpate > 0.4) {
             probEmpate = 0.4;
         }
 
-        // Redistribuir el resto de la probabilidad entre los jugadores
-        double totalProb = probLocal + probVisitante;
-        probLocal = probLocal / totalProb * (1 - probEmpate);
-        probVisitante = probVisitante / totalProb * (1 - probEmpate);
+        // Redistribuir la probabilidad restante
+        double remainingProb = 1 - probEmpate;
+        probLocal = remainingProb * (factorLocal / (factorLocal + factorVisitante));
+        double probVisitante = remainingProb * (factorVisitante / (factorLocal + factorVisitante));
 
         // Normalizar las probabilidades para asegurar que sumen 100%
-        int probLocalInt = (int) (probLocal * 100);
-        int probEmpateInt = (int) (probEmpate * 100);
-        int probVisitanteInt = 100 - probLocalInt - probEmpateInt;
+        double totalProb = probLocal + probEmpate + probVisitante;
+        probLocal = probLocal / totalProb * 100;
+        probEmpate = probEmpate / totalProb * 100;
+        probVisitante = probVisitante / totalProb * 100;
+
+        // Redondear las probabilidades y ajustar para que sumen 100%
+        int probLocalInt = (int) Math.round(probLocal);
+        int probEmpateInt = (int) Math.round(probEmpate);
+        int probVisitanteInt = (int) Math.round(probVisitante);
+
+        // Ajustar la suma de las probabilidades a 100%
+        int totalInt = probLocalInt + probEmpateInt + probVisitanteInt;
+        if (totalInt != 100) {
+            int diff = 100 - totalInt;
+            if (diff > 0) {
+                probEmpateInt += diff;
+            } else {
+                probEmpateInt += diff;
+            }
+        }
 
         Map<String, Integer> probabilidad = new HashMap<>();
         probabilidad.put("local", probLocalInt);
