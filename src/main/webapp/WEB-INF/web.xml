@@ -13,6 +13,10 @@
         <servlet-name>usuarios-liga-servlet</servlet-name>
         <servlet-class>com.mycompany.platazoPlato.controlador.UsuariosLigaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>copa-servlet</servlet-name>
+        <servlet-class>com.mycompany.platazoPlato.controlador.CopaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/assets/*</url-pattern>
@@ -41,6 +45,10 @@
     <servlet-mapping>
         <servlet-name>usuarios-liga-servlet</servlet-name>
         <url-pattern>/usuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>copa-servlet</servlet-name>
+        <url-pattern>/copa</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
