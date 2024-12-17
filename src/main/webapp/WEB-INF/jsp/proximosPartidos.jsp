@@ -23,6 +23,9 @@
                         <c:when test="${entry.key == 'mundial'}">
                             <h2>&#127757 MUNDIAL &#127757</h2>
                         </c:when>
+                        <c:when test="${entry.key == 'copa'}">
+                            <h2>&#127943 COPA PLATO &#127943</h2>
+                        </c:when>
                         <c:otherwise>
                             <h2>OTRO EVENTO</h2>
                         </c:otherwise>

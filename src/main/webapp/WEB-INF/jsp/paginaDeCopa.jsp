@@ -35,14 +35,8 @@
                                         <c:when test="${partido.estado == 'finalizado'}">
                                             <div>Final</div>
                                         </c:when>
-                                        <c:when test="${partido.estado == 'suspendido'}">
-                                            <div style="background-color: red;">Susp.</div>
-                                        </c:when>
-                                        <c:when test="${partido.estado == 'en_progreso'}">
-                                            <div>En progreso</div>
-                                        </c:when>
                                         <c:otherwise>
-                                            <div>${partido.estado}</div>
+                                            <div>${partido.fecha}</div>
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
