@@ -11,6 +11,7 @@ com\mycompany\platazoPlato\modelo\GolesPorTiempo.class
 com\mycompany\platazoPlato\modelo\Clasificacion.class
 com\mycompany\platazoPlato\modelo\db\PartidoDAO.class
 com\mycompany\platazoPlato\modelo\Usuario.class
+com\mycompany\platazoPlato\controlador\CopaServlet.class
 com\mycompany\platazoPlato\modelo\db\ConnectionPool.class
 com\mycompany\platazoPlato\controlador\UsuariosLigaServlet.class
 com\mycompany\platazoPlato\modelo\GolesPorTiempoDAOHardcodeado.class

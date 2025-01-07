@@ -4,7 +4,7 @@
 Esta aplicación web está diseñada para gestionar y mostrar información sobre la Liga de Plato Fútbol (LPF). Permite a los usuarios registrar los resultados de los partidos, consultar la tabla de posiciones, estadísticas de los equipos y jugadores, y acceder a información sobre la liga y el juego Table Soccer.
 
 ## Funcionalidades principales
-- **Registro de resultados de partidos**: Los usuarios pueden ingresar los resultados de los partidos jugados, incluyendo los goles de cada equipo.
+- **Registro de resultados de partidos**: Los usuarios pueden ver los resultados de los partidos jugados, incluyendo los goles de cada equipo.
 - **Tabla de posiciones**: La aplicación genera automáticamente la tabla de posiciones de la liga, basada en los resultados de los partidos registrados. Se calcula la posición de los equipos en base a la puntuación, utilizando criterios de desempate como la diferencia de goles.
 - **Información de la liga**: La aplicación provee información general sobre la liga, como el formato de competición, el sistema de puntuación, las fechas de las jornadas y las reglas del juego.
 - **Información sobre Table Soccer**: La aplicación ofrece una descripción del juego Table Soccer en la plataforma Plato, incluyendo su objetivo, la jugabilidad y las características sociales.
