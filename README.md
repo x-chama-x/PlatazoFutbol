@@ -27,7 +27,8 @@ La aplicación utiliza una base de datos para almacenar la información de la li
 ## screens
 ![image](https://github.com/user-attachments/assets/756f202d-1359-4c86-a906-90bc839d6796)
 ![image](https://github.com/user-attachments/assets/9d2cff35-3d69-4f31-a21e-675e5252ea61)
-![image](https://github.com/user-attachments/assets/e9820606-2e48-4fdc-a530-00feb2800c7a)
+![image](https://github.com/user-attachments/assets/7b14fee7-4dd1-43bc-a66c-fad68fca69c2)
+
 
 
 
